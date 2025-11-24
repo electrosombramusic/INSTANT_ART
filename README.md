@@ -29,22 +29,24 @@ instant-art/
 
 ## Requisitos Previos
 
-- **Sistema Operativo**: Ubuntu 24.04 (o similar)
+- **Sistema Operativo**: Windows 10 o Windows 11
 - **Python**: 3.10 o superior
-- **pip**: Gestor de paquetes de Python
+- **pip**: Gestor de paquetes de Python (incluido con Python)
 
 ### Verificar instalación de Python
 
-```bash
-python3 --version
+Abre **PowerShell** o **CMD** y ejecuta:
+
+```cmd
+python --version
 ```
 
 Si no tienes Python instalado:
 
-```bash
-sudo apt update
-sudo apt install python3 python3-pip python3-venv
-```
+1. Descarga Python desde [python.org/downloads](https://www.python.org/downloads/)
+2. Ejecuta el instalador
+3. **IMPORTANTE**: Marca la casilla "Add Python to PATH" durante la instalación
+4. Reinicia la terminal después de instalar
 
 ## Instalación
 
@@ -52,23 +54,31 @@ sudo apt install python3 python3-pip python3-venv
 
 Si estás clonando desde un repositorio:
 
-```bash
+```cmd
 git clone <url-del-repositorio>
 cd instant-art
 ```
 
 Si ya tienes los archivos, navega a la carpeta:
 
-```bash
-cd /ruta/a/instant-art
+```cmd
+cd C:\ruta\a\instant-art
 ```
 
 ### 2. Crear las carpetas de trabajo
 
 Las carpetas `fotos/`, `proceso/` y `carrusel/` no están incluidas en el repositorio (están en `.gitignore`). Créalas con:
 
-```bash
-mkdir -p fotos proceso carrusel
+**En PowerShell:**
+```powershell
+mkdir fotos, proceso, carrusel
+```
+
+**En CMD:**
+```cmd
+mkdir fotos
+mkdir proceso
+mkdir carrusel
 ```
 
 Estas carpetas son necesarias para el flujo de trabajo del sistema:
@@ -78,21 +88,32 @@ Estas carpetas son necesarias para el flujo de trabajo del sistema:
 
 ### 3. Crear el entorno virtual
 
-```bash
-python3 -m venv venv
+```cmd
+python -m venv venv
 ```
 
 ### 4. Activar el entorno virtual
 
-```bash
-source venv/bin/activate
+**En PowerShell:**
+```powershell
+venv\Scripts\Activate.ps1
+```
+
+**En CMD:**
+```cmd
+venv\Scripts\activate.bat
 ```
 
 **Nota**: Verás `(venv)` al inicio de tu línea de comando cuando el entorno esté activo.
 
+**Si obtienes error de permisos en PowerShell**, ejecuta esto como Administrador:
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
 ### 5. Instalar dependencias
 
-```bash
+```cmd
 pip install -r requirements.txt
 ```
 
@@ -103,7 +124,7 @@ Esto instalará:
 
 ### 6. Verificar instalación
 
-```bash
+```cmd
 python -c "import PIL, numpy, pygame; print('✓ Todas las dependencias instaladas correctamente')"
 ```
 
@@ -111,13 +132,21 @@ python -c "import PIL, numpy, pygame; print('✓ Todas las dependencias instalad
 
 ### Ejecutar el sistema completo
 
-Necesitarás **3 terminales** abiertas (o usar un multiplexor como `tmux` o `screen`).
+Necesitarás **3 ventanas de terminal** abiertas (PowerShell o CMD).
 
 #### Terminal 1: Monitor de Fotos
 
-```bash
-cd /ruta/a/instant-art
-source venv/bin/activate
+**En PowerShell:**
+```powershell
+cd C:\ruta\a\instant-art
+venv\Scripts\Activate.ps1
+python monitor_fotos.py
+```
+
+**En CMD:**
+```cmd
+cd C:\ruta\a\instant-art
+venv\Scripts\activate.bat
 python monitor_fotos.py
 ```
 
@@ -125,9 +154,17 @@ Este script monitorea cada 15 segundos la carpeta `fotos/` y copia archivos nuev
 
 #### Terminal 2: Procesador de Imágenes
 
-```bash
-cd /ruta/a/instant-art
-source venv/bin/activate
+**En PowerShell:**
+```powershell
+cd C:\ruta\a\instant-art
+venv\Scripts\Activate.ps1
+python procesa.py
+```
+
+**En CMD:**
+```cmd
+cd C:\ruta\a\instant-art
+venv\Scripts\activate.bat
 python procesa.py
 ```
 
@@ -135,9 +172,17 @@ Este script procesa cada 15 segundos las imágenes de `proceso/`, intercambia al
 
 #### Terminal 3: Carrusel de Imágenes
 
-```bash
-cd /ruta/a/instant-art
-source venv/bin/activate
+**En PowerShell:**
+```powershell
+cd C:\ruta\a\instant-art
+venv\Scripts\Activate.ps1
+python carrusel.py
+```
+
+**En CMD:**
+```cmd
+cd C:\ruta\a\instant-art
+venv\Scripts\activate.bat
 python carrusel.py
 ```
 
@@ -167,12 +212,12 @@ USUARIO → fotos/ → [monitor] → proceso/ → [procesa] → carrusel/ → [v
 
 Para detener cualquier script:
 
-1. Ve a la terminal donde está corriendo
+1. Ve a la ventana de terminal donde está corriendo
 2. Presiona **Ctrl + C**
 
 Para salir del entorno virtual:
 
-```bash
+```cmd
 deactivate
 ```
 
@@ -192,8 +237,16 @@ El sistema soporta los siguientes formatos:
 
 Si ves errores como `[ERROR] La carpeta fotos no existe`, significa que olvidaste crear las carpetas de trabajo. Créalas con:
 
-```bash
-mkdir -p fotos proceso carrusel
+**En PowerShell:**
+```powershell
+mkdir fotos, proceso, carrusel
+```
+
+**En CMD:**
+```cmd
+mkdir fotos
+mkdir proceso
+mkdir carrusel
 ```
 
 ### Error: "ModuleNotFoundError"
@@ -202,12 +255,19 @@ Asegúrate de que:
 1. El entorno virtual esté activado (deberías ver `(venv)` en tu terminal)
 2. Hayas instalado las dependencias: `pip install -r requirements.txt`
 
-### Error: "Permission denied"
+### Error: "Python no se reconoce como comando"
 
-Dale permisos de ejecución a los scripts:
+Esto significa que Python no está en tu PATH:
+1. Reinstala Python desde [python.org](https://www.python.org/downloads/)
+2. **Marca la casilla "Add Python to PATH"** durante la instalación
+3. Reinicia la terminal después de instalar
 
-```bash
-chmod +x monitor_fotos.py procesa.py carrusel.py
+### Error de permisos en PowerShell
+
+Si obtienes un error al activar el entorno virtual en PowerShell:
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
 ### El carrusel no muestra imágenes
@@ -220,22 +280,25 @@ chmod +x monitor_fotos.py procesa.py carrusel.py
 
 1. Asegúrate de que `monitor_fotos.py` esté copiando archivos a `proceso/`
 2. Verifica que las imágenes tengan un formato soportado
-3. Revisa los permisos de las carpetas: `ls -la`
+3. Revisa que las carpetas existan y tengan permisos de escritura
 
-### Pygame no funciona
+### Pygame no funciona en Windows
 
-Si tienes problemas con pygame en Ubuntu, instala las dependencias del sistema:
+Si tienes problemas con pygame:
 
-```bash
-sudo apt-get install python3-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
+1. Actualiza pip primero:
+```cmd
+python -m pip install --upgrade pip
 ```
 
-Luego reinstala pygame:
-
-```bash
-source venv/bin/activate
-pip install --force-reinstall pygame
+2. Reinstala pygame:
+```cmd
+pip uninstall pygame
+pip install pygame
 ```
+
+3. Si persiste el error, instala Visual C++ Redistributable desde:
+https://aka.ms/vs/17/release/vc_redist.x64.exe
 
 ## Configuración Avanzada
 
@@ -274,7 +337,7 @@ Si encuentras bugs o tienes sugerencias:
 
 1. Documenta el problema con capturas de pantalla si es posible
 2. Incluye el mensaje de error completo
-3. Especifica tu versión de Ubuntu y Python
+3. Especifica tu versión de Windows y Python
 
 ## Licencia
 
