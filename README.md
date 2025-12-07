@@ -1,74 +1,47 @@
-# INSTANT_ART
+INSTANT_ART es un sistema pensado para eventos (bodas, fiestas, ferias, empresas) que captura fotos desde móviles u ordenadores, las procesa con IA en tiempo real, las etiqueta automáticamente para redes sociales, las muestra en pantallas y permite imprimirlas o enviarlas por email.
 
-Sistema para captura y procesamiento de fotos en eventos: móvil → PC → IA → carrusel / Instagram / mailing / impresión.
+La idea mejora radicalmente a los “photomatones con IA” actuales, que son caros, rígidos y dan resultados pobres. INSTANT_ART es moderno, portátil, rápido y funciona en cualquier dispositivo.
 
-## Estructura
+Objetivo del sistema
 
-instant-art/
-├── src/ # Código principal
-│ ├── monitor_fotos.py
-│ ├── procesa.py
-│ └── carrusel.py
-├── data/
-│ ├── input/ # Fotos originales
-│ └── output/ # Fotos procesadas
-├── docs/
-│ ├── arquitectura.md
-│ └── flujo_QA.md
-├── tests/ # Pruebas futuras
-├── requirements.txt
-└── README.md
+Crear una plataforma que:
 
-bash
-Copiar código
+Detecta nuevas fotos en un directorio o desde un móvil.
 
-## Requisitos
+Procesa la imagen con IA (ajustes, efectos, estilo, branding del evento).
 
-- Python 3.10+
-- Windows / Linux (WSL recomendado)
-- Dependencias: Pillow, NumPy, Pygame
+Genera versiones optimizadas para Instagram, pantallas y correo.
 
-## Instalación
+Publica automáticamente en redes o sistemas de pantalla.
 
-```bash
-# Crear y activar entorno virtual
-python -m venv .venv
-source .venv/bin/activate  # Linux / WSL
-.venv\Scripts\Activate.ps1 # Windows PowerShell
+Envía email automático con la foto al usuario.
 
-# Instalar dependencias
-pip install -r requirements.txt
-Flujo
-css
-Copiar código
-data/input → [monitor_fotos] → data/output → [carrusel / publicación]
-Uso
-Ejecutar cada script en terminal separada:
+Permite impresión local si el cliente lo desea.
 
-bash
-Copiar código
-python src/monitor_fotos.py
-python src/procesa.py
-python src/carrusel.py
-Controles del Carrusel
-ESC / Q → Salir
+Puede ser vendido o alquilado:
 
-F → Pantalla completa
+como servicio para eventos,
 
-SPACE → Siguiente imagen
+o como software autosuficiente “pago por uso/foto”.
 
-LEFT ARROW → Imagen anterior
+Ventaja competitiva
 
-Notas
-Detección de nuevas fotos por timestamps
+No es un aparato físico antiguo: es software portable.
 
-procesa.py integra IA para efectos artísticos
+Se ejecuta en un portátil, tablet o móvil.
 
-Escalable: nuevas fuentes de entrada, backends de IA, integración social
+Totalmente personalizable por evento (marco, colores, hashtag).
 
-Contribuir
-Documentar bugs / sugerencias en docs/
+El cliente puede gestionarlo sin técnico.
 
-Mantener estructura y comentarios claros
-Configurable para CI/CD sin modificaciones mayores.
+El flujo es rápido y completamente automático.
 
+Situación actual del repositorio
+
+Repositorio ordenado, con estructura clara:
+
+src/
+data/input
+data/output
+docs/
+tests/
