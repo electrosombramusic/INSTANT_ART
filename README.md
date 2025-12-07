@@ -1,37 +1,74 @@
-Proyecto de Automatización con Python y Selenium
+# INSTANT_ART
 
-Este repositorio contiene un entorno básico de automatización pensado para pruebas funcionales y de regresión. La estructura está organizada para trabajar cómodamente desde WSL + VS Code, con instalación sencilla y comandos directos desde terminal.
+Sistema para captura y procesamiento de fotos en eventos: móvil → PC → IA → carrusel / Instagram / mailing / impresión.
 
-Estructura
+## Estructura
 
-src/: Código principal del proyecto.
+instant-art/
+├── src/ # Código principal
+│ ├── monitor_fotos.py
+│ ├── procesa.py
+│ └── carrusel.py
+├── data/
+│ ├── input/ # Fotos originales
+│ └── output/ # Fotos procesadas
+├── docs/
+│ ├── arquitectura.md
+│ └── flujo_QA.md
+├── tests/ # Pruebas futuras
+├── requirements.txt
+└── README.md
 
-tests/: Casos de prueba y suites.
+bash
+Copiar código
 
-requirements.txt: Dependencias.
+## Requisitos
 
-venv/: Entorno virtual (no se sube al repo).
+- Python 3.10+
+- Windows / Linux (WSL recomendado)
+- Dependencias: Pillow, NumPy, Pygame
 
-Requisitos
+## Instalación
 
-Python 3.10+
+```bash
+# Crear y activar entorno virtual
+python -m venv .venv
+source .venv/bin/activate  # Linux / WSL
+.venv\Scripts\Activate.ps1 # Windows PowerShell
 
-WSL o Linux
-
-Navegador compatible + WebDriver
-
-Instalación rápida
-
-python3 -m venv venv
-source venv/bin/activate
+# Instalar dependencias
 pip install -r requirements.txt
+Flujo
+css
+Copiar código
+data/input → [monitor_fotos] → data/output → [carrusel / publicación]
+Uso
+Ejecutar cada script en terminal separada:
 
-Ejecución
+bash
+Copiar código
+python src/monitor_fotos.py
+python src/procesa.py
+python src/carrusel.py
+Controles del Carrusel
+ESC / Q → Salir
 
-pytest -v
+F → Pantalla completa
+
+SPACE → Siguiente imagen
+
+LEFT ARROW → Imagen anterior
 
 Notas
+Detección de nuevas fotos por timestamps
 
-Estructura pensada para escalar a Page Object Model.
+procesa.py integra IA para efectos artísticos
 
+Escalable: nuevas fuentes de entrada, backends de IA, integración social
+
+Contribuir
+Documentar bugs / sugerencias en docs/
+
+Mantener estructura y comentarios claros
 Configurable para CI/CD sin modificaciones mayores.
+
