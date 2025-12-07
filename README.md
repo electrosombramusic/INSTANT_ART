@@ -1,37 +1,47 @@
-Proyecto de Automatización con Python y Selenium
+INSTANT_ART es un sistema pensado para eventos (bodas, fiestas, ferias, empresas) que captura fotos desde móviles u ordenadores, las procesa con IA en tiempo real, las etiqueta automáticamente para redes sociales, las muestra en pantallas y permite imprimirlas o enviarlas por email.
 
-Este repositorio contiene un entorno básico de automatización pensado para pruebas funcionales y de regresión. La estructura está organizada para trabajar cómodamente desde WSL + VS Code, con instalación sencilla y comandos directos desde terminal.
+La idea mejora radicalmente a los “photomatones con IA” actuales, que son caros, rígidos y dan resultados pobres. INSTANT_ART es moderno, portátil, rápido y funciona en cualquier dispositivo.
 
-Estructura
+Objetivo del sistema
 
-src/: Código principal del proyecto.
+Crear una plataforma que:
 
-tests/: Casos de prueba y suites.
+Detecta nuevas fotos en un directorio o desde un móvil.
 
-requirements.txt: Dependencias.
+Procesa la imagen con IA (ajustes, efectos, estilo, branding del evento).
 
-venv/: Entorno virtual (no se sube al repo).
+Genera versiones optimizadas para Instagram, pantallas y correo.
 
-Requisitos
+Publica automáticamente en redes o sistemas de pantalla.
 
-Python 3.10+
+Envía email automático con la foto al usuario.
 
-WSL o Linux
+Permite impresión local si el cliente lo desea.
 
-Navegador compatible + WebDriver
+Puede ser vendido o alquilado:
 
-Instalación rápida
+como servicio para eventos,
 
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
+o como software autosuficiente “pago por uso/foto”.
 
-Ejecución
+Ventaja competitiva
 
-pytest -v
+No es un aparato físico antiguo: es software portable.
 
-Notas
+Se ejecuta en un portátil, tablet o móvil.
 
-Estructura pensada para escalar a Page Object Model.
+Totalmente personalizable por evento (marco, colores, hashtag).
 
-Configurable para CI/CD sin modificaciones mayores.
+El cliente puede gestionarlo sin técnico.
+
+El flujo es rápido y completamente automático.
+
+Situación actual del repositorio
+
+Repositorio ordenado, con estructura clara:
+
+src/
+data/input
+data/output
+docs/
+tests/
